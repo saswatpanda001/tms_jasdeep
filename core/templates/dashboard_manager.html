@@ -1,0 +1,82 @@
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Dashboard Container -->
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white text-gray-800 shadow-md p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Manager Dashboard</h1>
+      </div>
+    </header>
+
+  
+    <!-- Main Content -->
+    <main class="flex-grow p-6">
+
+      <!-- Team Performance Overview -->
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Team Performance Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Performance Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Overall Team Performance</h3>
+            <p class="text-2xl font-bold text-teal-600">88%</p>
+            <p class="text-sm text-gray-600">Achieved this quarter</p>
+          </div>
+          <!-- Skill Gap Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Skill Gaps Identified</h3>
+            <p class="text-2xl font-bold text-teal-600">5</p>
+            <p class="text-sm text-gray-600">Areas requiring development</p>
+          </div>
+          <!-- Feedback Score Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Average Feedback Score</h3>
+            <p class="text-2xl font-bold text-teal-600">4.7/5</p>
+            <p class="text-sm text-gray-600">Team's average rating</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics and Performance Trends -->
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Analytics & Performance Trends</h2>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700">Performance Over Time</h3>
+          <!-- Placeholder for performance chart -->
+          <div class="h-48 bg-gray-200 rounded-lg"></div>
+          <p class="text-sm text-gray-600 mt-2">Track the team's performance trends over the past year.</p>
+        </div>
+      </section>
+
+      <!-- Employee Profiles and Reviews -->
+      <section>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Employee Profiles & Reviews</h2>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700">Employee Directory</h3>
+          <ul class="list-disc pl-5 text-sm text-gray-600">
+            <li><a href="/employee/1" class="text-teal-600 hover:text-teal-800">John Doe</a></li>
+            <li><a href="/employee/2" class="text-teal-600 hover:text-teal-800">Jane Smith</a></li>
+            <li><a href="/employee/3" class="text-teal-600 hover:text-teal-800">Alice Johnson</a></li>
+            <!-- Add more employees as needed -->
+          </ul>
+          <a href="/employees" class="text-teal-600 hover:text-teal-800 mt-4 inline-block">View All Employees</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white text-gray-800 p-4">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2025 Talent Management System. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+{% endblock %}

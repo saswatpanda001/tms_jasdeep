@@ -1,0 +1,98 @@
+
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Dashboard Container -->
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white text-gray-800 shadow-md p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Welcome, [Employee Name]</h1>
+        
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-6">
+
+      <!-- Performance Overview -->
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Performance Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Performance Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Overall Performance</h3>
+            <p class="text-2xl font-bold text-teal-600">85%</p>
+            <p class="text-sm text-gray-600">Achieved this quarter</p>
+          </div>
+          <!-- Learning Progress Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Learning Progress</h3>
+            <p class="text-2xl font-bold text-teal-600">70%</p>
+            <p class="text-sm text-gray-600">Courses completed</p>
+          </div>
+          <!-- Feedback Score Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Feedback Score</h3>
+            <p class="text-2xl font-bold text-teal-600">4.5/5</p>
+            <p class="text-sm text-gray-600">Average rating</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recognition and Rewards -->
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Recognition & Rewards</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Badge Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Top Performer</h3>
+            <p class="text-sm text-gray-600">Awarded for exceptional performance</p>
+          </div>
+          <!-- Points Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Points Earned</h3>
+            <p class="text-2xl font-bold text-teal-600">1,200</p>
+            <p class="text-sm text-gray-600">Points accumulated this year</p>
+          </div>
+          <!-- Reward Card -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold text-gray-700">Available Rewards</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-600">
+              <li>Extra Vacation Day</li>
+              <li>Gift Card</li>
+              <li>Training Voucher</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Career Development Recommendations -->
+      <section>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Career Development Recommendations</h2>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h3 class="text-lg font-semibold text-gray-700">Recommended Courses</h3>
+          <ul class="list-disc pl-5 text-sm text-gray-600">
+            <li>Advanced Project Management</li>
+            <li>Leadership Skills Workshop</li>
+            <li>Data Analysis with Python</li>
+          </ul>
+          <a href="/courses" class="text-teal-600 hover:text-teal-800 mt-4 inline-block">View All Courses</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white text-gray-800 p-4">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2025 Talent Management System. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </div>
+
+{% endblock %}
