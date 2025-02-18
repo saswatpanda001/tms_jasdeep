@@ -8,11 +8,7 @@
   <header class="bg-white text-gray-800 shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">Employee Feedback</h1>
-      <nav>
-        <a href="/dashboard" class="text-gray-600 hover:text-gray-800 mx-2">Dashboard</a>
-        <a href="/profile" class="text-gray-600 hover:text-gray-800 mx-2">Profile</a>
-        <a href="/logout" class="text-gray-600 hover:text-gray-800 mx-2">Logout</a>
-      </nav>
+     
     </div>
   </header>
 
@@ -65,21 +61,12 @@
       </div>
     </section>
 
-    <!-- Self-Assessment -->
-    <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Self-Assessment</h2>
-      <form action="/submit-self-assessment" method="POST" class="space-y-4">
-        <div>
-          <label for="self-assessment" class="block text-sm font-medium text-gray-700">Your Self-Assessment</label>
-          <textarea id="self-assessment" name="self-assessment" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></textarea>
-        </div>
-        <button type="submit" class="w-full py-2 px-4 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700">Submit Self-Assessment</button>
-      </form>
-    </section>
+   
+             
 
     <!-- Request Feedback -->
     <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Request Feedback</h2>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4"> Feedback</h2>
       <form action="/submit-feedback-request" method="POST" class="space-y-4">
         <div>
           <label for="feedback-type" class="block text-sm font-medium text-gray-700">Feedback Type</label>
@@ -97,19 +84,6 @@
       </form>
     </section>
 
-    <!-- Manager Feedback -->
-    <section class="bg-white p-6 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Provide Feedback</h2>
-      <form action="/submit-manager-feedback" method="POST" class="space-y-4">
-        <div>
-          <label for="employee-name" class="block text-sm font-medium text-gray-700">Employee Name</label>
-          <input type="text" id="employee-name" name="employee-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
-        </div>
-        <div>
-          </div>
-          </form>
-          </section>
-          
-         
+
  
 {% endblock %}

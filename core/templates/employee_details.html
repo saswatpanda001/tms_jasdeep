@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Main container -->
+  <div class="max-w-4xl mx-auto my-10 bg-gradient-to-br from-purple-50 to-blue-50 shadow-2xl rounded-lg overflow-hidden transform transition-all hover:scale-105">
+    <!-- Banner/Header -->
+    <div class="relative">
+      <img class="w-full h-48 object-cover" src="https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg" alt="Banner">
+      <!-- Profile image (overlapping the banner) -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-12">
+        <img class="h-24 w-24 rounded-full border-4 border-white shadow-lg" src="{{ userprofile.image.url }}"  Profile Picture">
+      </div>
+    </div>
+
+    <!-- Content section -->
+    <div class="pt-16 pb-6 px-6">
+      <!-- User Basic Info -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-purple-800">{{ userprofile.user.username }}</h2>
+        <p class="text-blue-600 mt-2 capitalize font-medium">{{ userprofile.role }}</p>
+        <div class="mt-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
+          <div>
+            <span class="text-gray-600 font-semibold">Email:</span> 
+            <span class="text-gray-800">{{ userprofile.email }}</span>
+          </div>
+          <div>
+            <span class="text-gray-600 font-semibold">Phone:</span> 
+            <span class="text-gray-800">{{ userprofile.phone_number }}</span>
+          </div>
+        </div>
+        <div class="mt-4">
+          <span class="text-gray-600 font-semibold">Joined:</span> 
+          <span class="text-gray-800">{{ userprofile.joined|date:"M d, Y" }}</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-6 border-t-2 border-purple-200">
+
+      <!-- Additional Details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Address Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Address</h3>
+          <p class="text-gray-700">{{ userprofile.address }}</p>
+        </div>
+
+        <!-- Position and Experience Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Position &amp; Experience</h3>
+          <p class="text-gray-700">
+            <span class="font-semibold">Position:</span> 
+            {% if userprofile.position %}
+              {{ userprofile.position.name }}
+            {% else %}
+              {{ userprofile.position_gen }}
+            {% endif %}
+          </p>
+          <p class="text-gray-700 mt-2">
+            <span class="font-semibold">Experience:</span> {{ userprofile.experience_years }} years
+          </p>
+        </div>
+
+        <!-- Rating Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Rating</h3>
+          <p class="text-gray-700">{{ userprofile.rating }} / 5</p>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Notifications</h3>
+          <p class="text-gray-700">
+            {% if userprofile.notifications_enabled %}
+              <span class="text-green-600 font-semibold">Enabled</span>
+            {% else %}
+              <span class="text-red-600 font-semibold">Disabled</span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-6 border-t-2 border-purple-200">
+
+      <!-- Skills, Certifications, Achievements, Trainings -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Skills Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Skills</h3>
+          {% if userprofile.skills.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for skill in userprofile.skills.all %}
+                <li>{{ skill.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No skills added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Certifications</h3>
+          {% if userprofile.certifications.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for cert in userprofile.certifications.all %}
+                <li>{{ cert.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No certifications added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Achievements</h3>
+          {% if userprofile.achievements.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for achievement in userprofile.achievements.all %}
+                <li>{{ achievement.title }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No achievements added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Trainings Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Trainings</h3>
+          {% if userprofile.trainings.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for training in userprofile.trainings.all %}
+                <li>{{ training.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No trainings added.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Performance History Section -->
+      <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg mt-6 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-purple-800 mb-3">Performance History</h3>
+        <p class="text-gray-700 whitespace-pre-line">{{ userprofile.performance_history }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

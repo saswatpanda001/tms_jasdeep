@@ -1,93 +1,160 @@
-
-
-
 {% extends 'base.html' %}
 {% block content %}
-  <!-- Profile Container -->
-  <div class="min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-white text-gray-800 shadow-md p-4">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Employee Profile</h1>
-        <nav>
-          <a href="/d" class="text-gray-600 hover:text-gray-800 mx-2">Dashboard</a>
-          <a href="/settings" class="text-gray-600 hover:text-gray-800 mx-2">Settings</a>
-          <a href="/logout" class="text-gray-600 hover:text-gray-800 mx-2">Logout</a>
-        </nav>
+  <!-- Main container -->
+  <div class="max-w-4xl mx-auto my-10 bg-gradient-to-br from-purple-50 to-blue-50 shadow-2xl rounded-lg overflow-hidden transform transition-all hover:scale-105">
+    <!-- Banner/Header -->
+    <div class="relative">
+      <img class="w-full h-48 object-cover" src="https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg" alt="Banner">
+      <!-- Profile image (overlapping the banner) -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-12">
+        <img class="h-24 w-24 rounded-full border-4 border-white shadow-lg" src="{{ userprofile.image.url }}"  Profile Picture">
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-grow p-6">
-
-      <!-- Profile Overview -->
-      <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <div class="flex items-center space-x-6">
-          <img src="https://via.placeholder.com/100" alt="Profile Picture" class="w-24 h-24 rounded-full border-4 border-teal-600">
-          <div>
-            <h2 class="text-2xl font-semibold text-gray-800">Sam</h2>
-            <p class="text-lg text-gray-600">Software Engineer</p>
-            <p class="text-sm text-gray-500">Joined: January 2020</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Personal Information Form -->
-      <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
-        <form action="/update-profile" method="POST">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
-              <input type="text" id="first-name" name="first_name" value="John" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-            </div>
-            <div>
-              <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-              <input type="text" id="last-name" name="last_name" value="Doe" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" id="email" name="email" value="john.doe@example.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-            </div>
-            <div>
-              <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-              <input type="text" id="phone" name="phone" value="+1 234 567 890" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-            </div>
-          </div>
-          <button type="submit" class="mt-4 w-full py-2 px-4 bg-teal-600 text-white font-semibold rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">Update Information</button>
-        </form>
-      </section>
-
-      <!-- Skills and Career Aspirations -->
-      <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Skills & Career Aspirations</h3>
-        <form action="/update-skills" method="POST">
-          <div class="mb-4">
-            <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
-            <input type="text" id="skills" name="skills" value="JavaScript, React, Node.js" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">
-          </div>
-          <div class="mb-4">
-            <label for="aspirations" class="block text-sm font-medium text-gray-700">Career Aspirations</label>
-            <textarea id="aspirations" name="aspirations" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500">Lead a development team and contribute to innovative projects.</textarea>
-          </div>
-          <button type="submit" class="w-full py-2 px-4 bg-teal-600 text-white font-semibold rounded-md shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">Update Skills & Aspirations</button>
-        </form>
-      </section>
-
-      <!-- Document Upload -->
-      <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Upload Documents</h3>
-        <form action="/upload-documents" method="POST" enctype="multipart/form-data">
-          <div class="mb-4">
-            <label for="cv" class="block text-sm font-medium text-gray-700">Upload CV</label>
-            <input type="file" id="cv" name="cv" class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-teal-600 file:bg-teal-50 hover:file:bg-teal-100">
-          </div>
-         </form>
-        </section>
-      </main>
-
     </div>
 
+    <!-- Content section -->
+    <div class="pt-16 pb-6 px-6">
+      
+      <!-- User Basic Info -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold text-purple-800">{{ userprofile.user.username }}</h2>
+        <p class="text-blue-600 mt-2 capitalize font-medium">{{ userprofile.role }}</p>
+        <div class="mt-4 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
+          <div>
+            <span class="text-gray-600 font-semibold">Email:</span> 
+            <span class="text-gray-800">{{ userprofile.email }}</span>
+          </div>
+          <div>
+            <span class="text-gray-600 font-semibold">Phone:</span> 
+            <span class="text-gray-800">{{ userprofile.phone_number }}</span>
+          </div>
+        </div>
+        <div class="mt-4">
+          <span class="text-gray-600 font-semibold">Joined:</span> 
+          <span class="text-gray-800">{{ userprofile.joined|date:"M d, Y" }}</span>
+          <a href="{% url 'core:edit_emp_profile' user.id%}">
+          <span class="text-white bg-blue-600 p-3 ml-2 rounded-lg">Edit Profile</span>
+          </a>
+          
+        </div>
+        
+      </div>
+      
+     
 
+      <!-- Divider -->
+      <hr class="my-6 border-t-2 border-purple-200">
+      
+      <!-- Additional Details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Address Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Address</h3>
+          <p class="text-gray-700">{{ userprofile.address }}</p>
+        </div>
+
+        <!-- Position and Experience Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Position &amp; Experience</h3>
+          <p class="text-gray-700">
+            <span class="font-semibold">Position:</span> 
+            {% if userprofile.position %}
+              {{ userprofile.position.name }}
+            {% else %}
+              {{ userprofile.position_gen }}
+            {% endif %}
+          </p>
+          <p class="text-gray-700 mt-2">
+            <span class="font-semibold">Experience:</span> {{ userprofile.experience_years }} years
+          </p>
+        </div>
+
+        <!-- Rating Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Rating</h3>
+          <p class="text-gray-700">{{ userprofile.rating }} / 5</p>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-bold text-purple-800 mb-2">Notifications</h3>
+          <p class="text-gray-700">
+            {% if userprofile.notifications_enabled %}
+              <span class="text-green-600 font-semibold">Enabled</span>
+            {% else %}
+              <span class="text-red-600 font-semibold">Disabled</span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-6 border-t-2 border-purple-200">
+
+      <!-- Skills, Certifications, Achievements, Trainings -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Skills Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Skills</h3>
+          {% if userprofile.skills.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for skill in userprofile.skills.all %}
+                <li>{{ skill.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No skills added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Certifications</h3>
+          {% if userprofile.certifications.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for cert in userprofile.certifications.all %}
+                <li>{{ cert.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No certifications added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Achievements</h3>
+          {% if userprofile.achievements.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for achievement in userprofile.achievements.all %}
+                <li>{{ achievement.title }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No achievements added.</p>
+          {% endif %}
+        </div>
+
+        <!-- Trainings Section -->
+        <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold text-purple-800 mb-3">Trainings</h3>
+          {% if userprofile.trainings.all %}
+            <ul class="list-disc list-inside text-gray-700">
+              {% for training in userprofile.trainings.all %}
+                <li>{{ training.name }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-gray-700">No trainings added.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Performance History Section -->
+      <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-4 rounded-lg shadow-lg mt-6 hover:shadow-xl transition-shadow">
+        <h3 class="text-xl font-bold text-purple-800 mb-3">Performance History</h3>
+        <p class="text-gray-700 whitespace-pre-line">{{ userprofile.performance_history }}</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

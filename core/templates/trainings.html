@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Trainings</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    {% include 'navbar.html' %}
+  
+    <div class="container mx-auto p-6">
+        <!-- Employee Profile -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800">Employee Profile</h2>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                    <p class="text-gray-600"><strong>Name:</strong> John Doe</p>
+                    <p class="text-gray-600"><strong>Current Role:</strong> Software Engineer</p>
+                    <p class="text-gray-600"><strong>Skills:</strong> JavaScript, React, Python</p>
+                </div>
+                <div>
+                    <p class="text-gray-600"><strong>Experience:</strong> 3 Years</p>
+                    <p class="text-gray-600"><strong>Target Role:</strong> Senior Software Engineer</p>
+                    <p class="text-green-600 font-semibold">Completing recommended trainings can help you get promoted!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Trainings -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800">Recommended Trainings</h2>
+            <table class="w-full mt-4 border-collapse">
+                <thead>
+                    <tr class="bg-blue-500 text-white">
+                        <th class="p-3">Training Name</th>
+                        <th class="p-3">Duration</th>
+                        <th class="p-3">Skills Gained</th>
+                        <th class="p-3">Eligible Positions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-50">
+                        <td class="p-3">Advanced React & Redux</td>
+                        <td class="p-3">6 Weeks</td>
+                        <td class="p-3">State Management, Performance Optimization</td>
+                        <td class="p-3">Frontend Lead, Senior Developer</td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td class="p-3">Machine Learning with Python</td>
+                        <td class="p-3">8 Weeks</td>
+                        <td class="p-3">ML Algorithms, Data Science</td>
+                        <td class="p-3">AI Engineer, Data Scientist</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="p-3">Cloud Computing with AWS</td>
+                        <td class="p-3">10 Weeks</td>
+                        <td class="p-3">AWS Services, Serverless Architectures</td>
+                        <td class="p-3">Cloud Architect, DevOps Engineer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Skill Impact Analysis -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800">Skill Impact Analysis</h2>
+            <canvas id="skillChart" class="mt-4"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js Data
+        const ctx = document.getElementById('skillChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['JavaScript', 'React', 'Python', 'AWS', 'Machine Learning'],
+                datasets: [{
+                    label: 'Skill Proficiency',
+                    data: [60, 70, 50, 30, 20],
+                    backgroundColor: ['#60a5fa', '#facc15', '#34d399', '#f472b6', '#a78bfa']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
