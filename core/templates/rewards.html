@@ -1,15 +1,10 @@
-
-
-
-
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Header -->
+  <!-- Header -->
   <header class="bg-white text-gray-800 shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">Recognition & Rewards</h1>
-    
     </div>
   </header>
 
@@ -20,45 +15,20 @@
     <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
       <h2 class="text-2xl font-semibold text-gray-800 mb-4">Top Performers</h2>
       <div class="space-y-4">
-        <!-- Leaderboard Item -->
+        {% for each in profiles %}
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mr-4">
-              <span class="text-xl">1</span>
+              <span class="text-xl">{{ forloop.counter }}</span>
             </div>
             <div>
-              <h3 class="text-lg font-semibold">John Doe</h3>
-              <p class="text-sm">Sales Manager</p>
+              <h3 class="text-lg font-semibold">{{ each.user.username }}</h3>
+              <p class="text-sm">{{ each.position }}</p>
             </div>
           </div>
-          <span class="text-sm text-gray-500">500 points</span>
+          <span class="text-sm text-gray-500">{{ each.points }} points</span>
         </div>
-        <!-- Leaderboard Item -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <div class="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mr-4">
-              <span class="text-xl">2</span>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold">Jane Smith</h3>
-              <p class="text-sm">Marketing Lead</p>
-            </div>
-          </div>
-          <span class="text-sm text-gray-500">450 points</span>
-        </div>
-        <!-- Leaderboard Item -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <div class="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center mr-4">
-              <span class="text-xl">3</span>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold">Alice Johnson</h3>
-              <p class="text-sm">Product Designer</p>
-            </div>
-          </div>
-          <span class="text-sm text-gray-500">400 points</span>
-        </div>
+        {% endfor %}
       </div>
     </section>
 
@@ -84,21 +54,50 @@
       </div>
     </section>
 
-    <!-- Nominate for Recognition -->
-    <section class="bg-white p-6 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Nominate a Colleague</h2>
-      <form action="/submit-nomination" method="POST" class="space-y-4">
+
+<!-- Send Appreciation Points -->
+<section class="bg-gradient-to-r from-teal-500 to-blue-500 p-8 rounded-lg shadow-xl mb-8">
+  <h2 class="text-3xl font-semibold text-white mb-6">Send Appreciation Points</h2>
+
+  <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
+        <!-- Receiver Field -->
         <div>
-          <label for="employee" class="block text-sm font-medium text-gray-700">Employee Name</label>
-          <input type="text" id="employee" name="employee" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm">
+          <label for="receiver" class="block text-sm font-medium text-gray-800 mb-2">Select Receiver</label>
+          <div class="relative">
+            {{ form.receiver }}
+            <div class="absolute top-0 right-0 text-gray-500 text-xs italic mt-1">Choose a user</div>
+          </div>
         </div>
+
+        <!-- Points Field -->
         <div>
-          <label for="reason" class="block text-sm font-medium text-gray-700">Reason for Nomination</label>
-          <textarea id="reason" name="reason" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"></textarea>
+          <label for="points" class="block text-sm font-medium text-gray-800 mb-2">Points</label>
+          <div class="relative">
+            {{ form.points }}
+            <div class="absolute top-0 right-0 text-gray-500 text-xs italic mt-1">Amount of points</div>
+          </div>
         </div>
-        <button type="submit" class="w-full py-2 px-4 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700">Submit Nomination</button>
-      </form>
-    </section>
+      </div>
+
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-medium text-gray-800 mb-2">Message (Optional)</label>
+        {{ form.message }}
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-center">
+        <button type="submit" class="bg-teal-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400">
+          Send Points
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
 
   </main>
 

@@ -3,6 +3,10 @@ from allauth.account.views import LoginView
 from django.contrib.auth.decorators import login_required
 from users.models import UserProfileModel
 
+
+
+
+
 class EmployeeLoginView(LoginView):
     template_name = "account/employee_login.html"
 

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto p-6">
+        <h2 class="text-2xl font-semibold text-gray-800">Add New Training</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md mt-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Training Name</label>
+                    <input type="text" name="name" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="duration" class="block text-sm font-medium text-gray-700">Duration (Weeks)</label>
+                    <input type="number" name="duration" id="duration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="skills" class="block text-sm font-medium text-gray-700">Skills Gained</label>
+                    <div class="mt-2">
+                        {{ form.skills }}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="eligible_positions" class="block text-sm font-medium text-gray-700">Eligible Positions</label>
+                    <div class="mt-2">
+                        {{ form.eligible_positions }}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Add Training</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

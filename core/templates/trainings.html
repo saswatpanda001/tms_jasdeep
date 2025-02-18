@@ -16,52 +16,51 @@
             <h2 class="text-2xl font-semibold text-gray-800">Employee Profile</h2>
             <div class="grid grid-cols-2 gap-4 mt-4">
                 <div>
-                    <p class="text-gray-600"><strong>Name:</strong> John Doe</p>
-                    <p class="text-gray-600"><strong>Current Role:</strong> Software Engineer</p>
-                    <p class="text-gray-600"><strong>Skills:</strong> JavaScript, React, Python</p>
+                    <p class="text-gray-600"><strong>Name:</strong> {{profile.user.username}}</p>
+                    <p class="text-gray-600"><strong>Current Role:</strong> {{profile.position}}</p>
+                    <p class="text-gray-600"><strong>Skills:</strong> {{profile.skills.all | join:", " }}</p>
                 </div>
                 <div>
-                    <p class="text-gray-600"><strong>Experience:</strong> 3 Years</p>
+                    <p class="text-gray-600"><strong>Experience:</strong> {{profile.experience_years }} Years</p>
                     <p class="text-gray-600"><strong>Target Role:</strong> Senior Software Engineer</p>
                     <p class="text-green-600 font-semibold">Completing recommended trainings can help you get promoted!</p>
                 </div>
             </div>
         </div>
 
-        <!-- Recommended Trainings -->
-        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-2xl font-semibold text-gray-800">Recommended Trainings</h2>
-            <table class="w-full mt-4 border-collapse">
-                <thead>
-                    <tr class="bg-blue-500 text-white">
-                        <th class="p-3">Training Name</th>
-                        <th class="p-3">Duration</th>
-                        <th class="p-3">Skills Gained</th>
-                        <th class="p-3">Eligible Positions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-gray-50">
-                        <td class="p-3">Advanced React & Redux</td>
-                        <td class="p-3">6 Weeks</td>
-                        <td class="p-3">State Management, Performance Optimization</td>
-                        <td class="p-3">Frontend Lead, Senior Developer</td>
-                    </tr>
-                    <tr class="bg-white">
-                        <td class="p-3">Machine Learning with Python</td>
-                        <td class="p-3">8 Weeks</td>
-                        <td class="p-3">ML Algorithms, Data Science</td>
-                        <td class="p-3">AI Engineer, Data Scientist</td>
-                    </tr>
-                    <tr class="bg-gray-50">
-                        <td class="p-3">Cloud Computing with AWS</td>
-                        <td class="p-3">10 Weeks</td>
-                        <td class="p-3">AWS Services, Serverless Architectures</td>
-                        <td class="p-3">Cloud Architect, DevOps Engineer</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <!-- Recommended Trainings -->
+<div class="bg-white p-6 rounded-lg shadow-md mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">Recommended Trainings</h2>
+    <table class="w-full mt-4 border-collapse">
+        <thead>
+            <tr class="bg-blue-500 text-white">
+                <th class="p-3">Training Name</th>
+                <th class="p-3">Duration (Weeks)</th>
+                <th class="p-3">Skills Gained</th>
+                <th class="p-3">Eligible Positions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for training in trainings %}
+            <tr class="{% cycle 'bg-gray-50' 'bg-white' %}">
+                <td class="p-3">{{ training.name }}</td>
+                <td class="p-3">{{ training.duration }} Weeks</td>
+                <td class="p-3">
+                    {{ training.skills.all|join:", " }}
+                </td>
+                <td class="p-3">
+                    {{ training.eligible_positions.all|join:", " }}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="p-3 text-center text-gray-500">No trainings available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 
         <!-- Skill Impact Analysis -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
